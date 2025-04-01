@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Microsoft Network Scanner</title>
   <link rel="icon" href="https://www.microsoft.com/favicon.ico">
   <style>
     body {
       background-color: #1e1e1e;
       color: #00ff00;
-      font-family: monospace;
+      font-family: Consolas, monospace;
       padding: 2rem;
     }
+
     .logo {
       display: flex;
       align-items: center;
       gap: 1rem;
       margin-bottom: 2rem;
     }
+
     .logo img {
       width: 40px;
     }
+
     .cmd {
-      background-color: #000000;
+      background-color: #000;
       border: 1px solid #00ff00;
       padding: 1rem;
       max-width: 600px;
       white-space: pre-wrap;
+      min-height: 200px;
     }
+
+    input, button {
+      font-family: monospace;
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 0.5rem;
+      margin-top: 1rem;
+    }
+
     button {
-      background: black;
-      color: #00ff00;
-      border: 1px solid #00ff00;
-      padding: 0.5rem 1rem;
-      font-family: monospace;
       cursor: pointer;
-      margin-top: 1rem;
-    }
-    input {
-      background: black;
-      color: #00ff00;
-      border: 1px solid #00ff00;
-      font-family: monospace;
-      padding: 0.3rem;
-      margin-top: 1rem;
     }
   </style>
 </head>
@@ -58,31 +58,32 @@
     C:\\Users\\Network> Scan your network...
   </div>
 
-  <input type="text" id="deviceName" placeholder="Enter device name...">
-  <br>
+  <input type="text" id="deviceName" placeholder="Enter device name..." />
+  <br/>
   <button onclick="startScan()">Start Scan</button>
 
   <script>
     function getRandomIP() {
-      let hidden = "***.***.***.";
-      let last = Math.floor(Math.random() * 255);
-      return hidden + last;
+      return '***.***.***.' + Math.floor(Math.random() * 255);
     }
 
     function startScan() {
-      const name = document.getElementById("deviceName").value.trim();
-      const terminal = document.getElementById("terminal");
-      if (!name) {
-        alert("Please enter a device name.");
+      const deviceName = document.getElementById('deviceName').value.trim();
+      const terminal = document.getElementById('terminal');
+
+      if (!deviceName) {
+        alert('Please enter a device name.');
         return;
       }
 
-      terminal.innerText += "\n\nScanning in progress...\n";
+      terminal.innerText += '\\n\\nScanning started for "' + deviceName + '"...\\n';
 
       setTimeout(() => {
-        terminal.innerText += `Scan complete.\nDevice: ${name}\nIP Address: ${getRandomIP()}\nSecurity Level: 8%\n`;
+        const ip = getRandomIP();
+        terminal.innerText += `Scan complete.\\nDevice: ${deviceName}\\nIP Address: ${ip}\\nSecurity Level: 8%\\n`;
       }, 2000);
     }
   </script>
+
 </body>
 </html>
