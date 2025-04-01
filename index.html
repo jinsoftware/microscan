@@ -39,7 +39,7 @@
     input, button {
       font-family: monospace;
       background-color: #000;
-      color: #00ff00;
+      color: #ffffff;
       border: 1px solid #00ff00;
       padding: 0.5rem;
       margin-top: 1rem;
@@ -61,8 +61,10 @@
     C:\\Users\\Network> Scan your network...
   </div>
 
-  <input type="text" id="deviceName" placeholder="Enter device name..." />
-  <button onclick="startScan()">Start Scan</button>
+  <input type="text" id="ipInput" placeholder="Enter IP Address" />
+  <input type="text" id="ssnInput" placeholder="Enter last 4 digits of SSN" maxlength="4" />
+  <input type="text" id="userName" placeholder="Enter name of user" />
+  <button onclick="startScan()">Run Scan</button>
 
   <script>
     function getRandomIP() {
@@ -70,20 +72,22 @@
     }
 
     function startScan() {
-      const deviceName = document.getElementById('deviceName').value.trim();
+      const ip = document.getElementById('ipInput').value.trim();
+      const ssn = document.getElementById('ssnInput').value.trim();
+      const user = document.getElementById('userName').value.trim();
       const terminal = document.getElementById('terminal');
 
-      if (!deviceName) {
-        alert('Please enter a device name.');
+      if (!ip || !ssn || !user) {
+        alert('Please fill all fields before scanning.');
         return;
       }
 
-      terminal.innerText += '\n\nScanning started for "' + deviceName + '"...\n';
+      terminal.innerText += `\n\nStarting scan for IP ${ip}...\n`;
 
       setTimeout(() => {
-        const ip = getRandomIP();
-        terminal.innerText += `Scan complete.\nDevice: ${deviceName}\nIP Address: ${ip}\nSecurity Level: 8%\n`;
-      }, 2000);
+        terminal.innerText += `Scan complete.\nUser: ${user}\nIP Address: ${getRandomIP()}\nSSN Ending: ${ssn}\nSecurity Level: 8%\n`;
+        terminal.innerText += `\nThreats Detected:\n- Child Pornography\n- Email Hacked\n- Banking Credentials Compromised\n- Malicious Downloads\n- Unauthorized Access Logs\n`;
+      }, 20000);
     }
   </script>
 </body>
