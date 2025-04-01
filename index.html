@@ -8,31 +8,34 @@
   <style>
     body {
       background-color: #1e1e1e;
-      color: #00ff00;
+      color: #ffffff;
       font-family: Consolas, monospace;
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
     }
-
     .logo {
       display: flex;
       align-items: center;
       gap: 1rem;
       margin-bottom: 2rem;
     }
-
     .logo img {
       width: 40px;
     }
-
     .cmd {
       background-color: #000;
       border: 1px solid #00ff00;
       padding: 1rem;
       max-width: 600px;
+      width: 100%;
       white-space: pre-wrap;
       min-height: 200px;
+      color: #00ff00;
     }
-
     input, button {
       font-family: monospace;
       background-color: #000;
@@ -40,15 +43,15 @@
       border: 1px solid #00ff00;
       padding: 0.5rem;
       margin-top: 1rem;
+      width: 100%;
+      max-width: 600px;
     }
-
     button {
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-
   <div class="logo">
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo">
     <h2>Microsoft Network Scanner</h2>
@@ -59,7 +62,6 @@
   </div>
 
   <input type="text" id="deviceName" placeholder="Enter device name..." />
-  <br/>
   <button onclick="startScan()">Start Scan</button>
 
   <script>
@@ -76,14 +78,13 @@
         return;
       }
 
-      terminal.innerText += '\\n\\nScanning started for "' + deviceName + '"...\\n';
+      terminal.innerText += '\n\nScanning started for "' + deviceName + '"...\n';
 
       setTimeout(() => {
         const ip = getRandomIP();
-        terminal.innerText += `Scan complete.\\nDevice: ${deviceName}\\nIP Address: ${ip}\\nSecurity Level: 8%\\n`;
+        terminal.innerText += `Scan complete.\nDevice: ${deviceName}\nIP Address: ${ip}\nSecurity Level: 8%\n`;
       }, 2000);
     }
   </script>
-
 </body>
 </html>
